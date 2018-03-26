@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../services/client.service';
 
+import { Client } from '../../models/Client'
 
 @Component({
   selector: 'app-dashboard',
@@ -9,10 +10,12 @@ import { ClientService } from '../../services/client.service';
 })
 export class DashboardComponent implements OnInit {
 
+  clients: Client[];
+
   constructor(private clientService: ClientService ) { }
 
   ngOnInit() {
-    this.clientService.getClients().subscribe(clients => console.log(clients));
+    this.clientService.getClients().subscribe(clients => this.clients = clients);
   }
 
 }
